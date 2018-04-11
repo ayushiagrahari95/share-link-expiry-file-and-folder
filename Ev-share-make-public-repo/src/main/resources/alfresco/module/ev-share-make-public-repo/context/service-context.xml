@@ -22,20 +22,6 @@
 
     <!-- A simple class that is initialized by Spring -->
     <bean id="eisenvault.ev_share_make_public_repo.Demo" class="eisenvault.ev_share_make_public_repo.platformsample.Demo" init-method="init" />
-
-    <!-- A simple module component that will be executed once.
-         Note. this module component will only be executed once, and then there will be an entry for it in the Repo DB.
-         So doing for example $ mvn clean install alfresco:run twice will only execute this component the first time.
-         You need to remove /alf_data_dev for it to be executed again. -->
-    <bean id="eisenvault.ev_share_make_public_repo.DemoComponent" class="eisenvault.ev_share_make_public_repo.platformsample.DemoComponent" parent="module.baseComponent" >
-        <property name="moduleId" value="ev-share-make-public-repo" />  <!-- See module.properties -->
-        <property name="name" value="DemoComponent" />
-        <property name="description" value="A demonstration component" />
-        <property name="sinceVersion" value="1.0" />
-        <property name="appliesFromVersion" value="0.99" /> <!-- 1.0 would not work here when using SNAPSHOT version in project  -->
-        <property name="nodeService" ref="NodeService" />
-        <property name="nodeLocatorService" ref="nodeLocatorService" />
-    </bean>
     
     <bean id="OnAddAspectPolicyOnQshared" class="org.alfresco.repo.policy.registration.ClassPolicyRegistration" parent="policyRegistration">
 

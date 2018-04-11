@@ -18,7 +18,7 @@
 <#-- Shows the Icon and link to the content for the doc, also the size in KB and lock status -->
 	<#---<b>check value of children:${space.hasChildren?c}></b> --->
     <#if (space.hasChildren?c=="true")>
-    <b>${message("templates.my_docs.name")}</b>
+    <b>${message("doclist.folder.contents")}</b>
     <#list space.children as child>
     <table>
     <tr>
