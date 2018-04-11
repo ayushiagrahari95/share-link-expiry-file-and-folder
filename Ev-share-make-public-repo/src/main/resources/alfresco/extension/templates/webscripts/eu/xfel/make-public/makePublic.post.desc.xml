@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>make-public</shortname>
+  <description>Document List Action - Make file public</description>
+  <url>/eu/xfel/make-public</url>
+  <format default="json">argument</format>
+  <authentication>user</authentication>
+  <transaction>required</transaction>
+</webscript>

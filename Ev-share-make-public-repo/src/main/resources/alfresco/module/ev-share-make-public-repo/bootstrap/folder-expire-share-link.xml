@@ -1,0 +1,39 @@
+<view:view xmlns:view="http://www.alfresco.org/view/repository/1.0">
+	<cm:content xmlns=""
+		xmlns:rn="http://www.alfresco.org/model/rendition/1.0" xmlns:sys="http://www.alfresco.org/model/system/1.0"
+		xmlns:lnk="http://www.alfresco.org/model/linksmodel/1.0" xmlns:ver="http://www.alfresco.org/model/versionstore/1.0"
+		xmlns:cmiscustom="http://www.alfresco.org/model/cmis/custom"
+		xmlns:emailserver="http://www.alfresco.org/model/emailserver/1.0"
+		xmlns:fm="http://www.alfresco.org/model/forum/1.0" xmlns:ia="http://www.alfresco.org/model/calendar"
+		xmlns:rule="http://www.alfresco.org/model/rule/1.0" xmlns:dl="http://www.alfresco.org/model/datalist/1.0"
+		xmlns:st="http://www.alfresco.org/model/site/1.0" xmlns:usr="http://www.alfresco.org/model/user/1.0"
+		xmlns:custom="custom.model" xmlns:exif="http://www.alfresco.org/model/exif/1.0"
+		xmlns:app="http://www.alfresco.org/model/application/1.0"
+		xmlns:module="http://www.alfresco.org/system/modules/1.0" xmlns:d="http://www.alfresco.org/model/dictionary/1.0"
+		xmlns:blg="http://www.alfresco.org/model/blogintegration/1.0"
+		xmlns:alf="http://www.alfresco.org" xmlns:cmis="http://www.alfresco.org/model/cmis/1.0/cs01"
+		xmlns:bpm="http://www.alfresco.org/model/bpm/1.0"
+		xmlns:inwf="http://www.alfresco.org/model/workflow/invite/nominated/1.0"
+		xmlns:imap="http://www.alfresco.org/model/imap/1.0" xmlns:cm="http://www.alfresco.org/model/content/1.0"
+		xmlns:reg="http://www.alfresco.org/system/registry/1.0" xmlns:ver2="http://www.alfresco.org/model/versionstore/2.0"
+		xmlns:stcp="http://www.alfresco.org/model/sitecustomproperty/1.0"
+		xmlns:view="http://www.alfresco.org/view/repository/1.0"
+		xmlns:imwf="http://www.alfresco.org/model/workflow/invite/moderated/1.0"
+		xmlns:act="http://www.alfresco.org/model/action/1.0" xmlns:wf="http://www.alfresco.org/model/workflow/1.0"
+		xmlns:trx="http://www.alfresco.org/model/transfer/1.0" view:childName="cm:folder-share-link-expiry.js">
+           <view:aspects>
+               <cm:titled />
+               <cm:author />
+               <app:inlineeditable />
+           </view:aspects>
+           <view:properties>
+               <app:editInline>true</app:editInline>
+               <cm:description>script used to expire the folder share</cm:description>
+               <cm:content>contentUrl=classpath:alfresco/module/${project.artifactId}/bootstrap/scripts/share-link-expiry/folder-share-link-expiry.js|mimetype=text/plain|size=|encoding=UTF-8|locale=en_US_</cm:content>
+               <cm:title>folder share link expiry script</cm:title>
+               <cm:name>folder-share-link-expiry.js</cm:name>
+           </view:properties>
+           <view:associations></view:associations>
+        </cm:content>
+        
+  </view:view>

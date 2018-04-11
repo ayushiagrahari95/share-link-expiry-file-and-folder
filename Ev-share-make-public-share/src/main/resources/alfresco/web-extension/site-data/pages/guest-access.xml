@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<page>
+   <id>make-public</id>
+   <page-type>make-public</page-type>
+   <title>Make content publicly available</title>
+   <title-id>page.guest-access.title</title-id>
+   <description>Add on to make Alfresco folders' content publicly available</description>
+   <description-id></description-id>
+   <template-instance>guest-access</template-instance>
+   <authentication>guest</authentication>
+</page>

@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>remove-public</shortname>
+  <description>Document List Action - Remove public access</description>
+  <url>/eu/xfel/remove-public</url>
+  <format default="json">argument</format>
+  <authentication>user</authentication>
+  <transaction>required</transaction>
+</webscript>

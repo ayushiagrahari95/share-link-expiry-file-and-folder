@@ -1,0 +1,54 @@
+<import resource="classpath:/alfresco/templates/webscripts/org/alfresco/slingshot/documentlibrary/action/action.lib.js">
+
+/**
+ * Grants or removes guest consumer permission to folder children
+ * 
+ * @param {type} node Folder to grant or remove permissions from
+ * @param {type} grant true grants permission, false removes it
+ * @return {undefined}
+ */
+/*function grantChildrenAccess(node, grant) {
+    for each (n in node.children)
+    {
+        if (n.isDocument)
+        {
+            if (grant) {
+            	logger.log("guest permission granted to nodes "+n.name);
+                n.setPermission("Consumer", "guest");
+            } else {
+            	logger.log("guest permission removed from nodes "+n.name);
+                n.removePermission("Consumer", "guest");
+            }
+        }
+    }
+}
+*/
+
+function addAspect(nodeRef)
+{
+var ctxt = Packages.org.springframework.web.context.ContextLoader.getCurrentWebApplicationContext();
+var properties =  ctxt.getBean('global-properties', java.util.Properties);
+
+function getFormattedDate(mydate) {
+    var str = mydate.getFullYear() + "-" + (mydate.getMonth() + 1) + "-" + mydate.getDate() 
+    return str;
+}
+
+logger.log("searching the node");
+logger.log("nodeRef is"+nodeRef);
+//var node = search.findNode(nodeRef);
+var node = utils.getNodeFromString(nodeRef);
+logger.log("node is $$$$$$$$$$$$$$$$$$ "+node);
+var date1      = new Date();
+var date2      = new Date();
+var expiration = new Number(properties["qshared.effectivity.expiration.days"]);
+date2.setDate(date2.getDate()+expiration);
+
+node.addAspect("cm:effectivity");
+node.properties["cm:from"] = getFormattedDate(date1);
+node.properties["cm:to"]   = getFormattedDate(date2);
+
+/* logger.warn("[zk] Expiration period (days): " + properties["qshared.effectivity.expiration.days"]);
+logger.warn("[zk] Setting effectivity sharing to: " + getFormattedDate(date2) );*/
+node.save();
+}

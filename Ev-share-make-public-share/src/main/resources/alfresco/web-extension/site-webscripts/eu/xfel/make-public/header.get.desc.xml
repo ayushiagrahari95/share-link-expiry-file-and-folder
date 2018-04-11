@@ -1,0 +1,6 @@
+<webscript>
+  <shortname>Header</shortname>
+  <description>Header component</description>
+  <url>/eu/xfel/make-public/header</url>
+  <authentication>guest</authentication>
+</webscript>

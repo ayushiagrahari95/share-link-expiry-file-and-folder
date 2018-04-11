@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>doclist</shortname>
+  <description>Publicly available document list</description>
+  <url>/eu/xfel/make-public/doclist</url>
+  <format default="html"/>
+  <authentication>guest</authentication>
+  <transaction allow="readonly">required</transaction>
+</webscript>

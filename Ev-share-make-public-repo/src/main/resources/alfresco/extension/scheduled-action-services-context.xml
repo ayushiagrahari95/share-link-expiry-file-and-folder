@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<beans>
+    
+ <!--
+    Define the model factory used to generate object models suitable for use with freemarker templates. 
+    -->
+    <bean id="templateActionModelFactory" class="org.alfresco.repo.action.scheduled.FreeMarkerWithLuceneExtensionsModelFactory">
+        <property name="serviceRegistry">
+            <ref bean="ServiceRegistry"/>
+        </property>
+    </bean>
+	
+	<!--
+    Action for expiring-folder-share-link script
+    -->
+    <bean id="runFolderShareExpireScript" class="org.alfresco.repo.action.scheduled.SimpleTemplateActionDefinition">
+        <property name="actionName">
+            <value>script</value>
+        </property>
+        <property name="parameterTemplates">
+            <map>
+                <entry>
+                    <key>
+                        <value>script-ref</value>
+                    </key>
+                    <value>\$\{selectSingleNode('workspace://SpacesStore', 'lucene', 'PATH:"/app:company_home/app:dictionary/app:scripts/cm:folder-share-link-expiry.js"' )\}</value>
+                </entry>
+            </map>
+        </property>
+        <property name="templateActionModelFactory">
+            <ref bean="templateActionModelFactory"/>
+        </property>
+        <property name="dictionaryService">
+            <ref bean="DictionaryService"/>
+        </property>
+        <property name="actionService">
+            <ref bean="ActionService"/>
+        </property>
+        <property name="templateService">
+            <ref bean="TemplateService"/>
+        </property>
+    </bean>
+
+    <!--
+    Run the script every day at 6:00 p.m
+    -->
+    <bean id="runFolderShareExpireScriptAction"
+          class="org.alfresco.repo.action.scheduled.CronScheduledQueryBasedTemplateActionDefinition">
+        <property name="transactionMode">
+            <value>UNTIL_FIRST_FAILURE</value>
+        </property>
+        <property name="compensatingActionMode">
+            <value>IGNORE</value>
+        </property>
+        <property name="searchService">
+            <ref bean="SearchService"/>
+        </property>
+        <property name="templateService">
+            <ref bean="TemplateService"/>
+        </property>
+        <property name="queryLanguage">
+            <value>lucene</value>
+        </property>
+        <property name="stores">
+            <list>
+                <value>workspace://SpacesStore</value>
+            </list>
+        </property>
+        <property name="queryTemplate">
+            <value>PATH:"/app:company_home"</value>
+        </property>
+        <property name="cronExpression">
+            <!-- <value>0 0/1 * * * ?</value> -->
+            <!-- <value>0 0 5 * * ?</value> -->
+           <value>${qshared.effectivity.cron}</value>
+        </property>
+        <property name="jobName">
+            <!-- <value>jobD</value> -->
+            <value>jobFolderShareExpire</value>
+        </property>
+        <property name="jobGroup">
+             <value>jobGroup</value> 
+        </property>
+        <property name="triggerName">
+            <value>triggerJobFolderShareExpire</value>
+        </property>
+        <property name="triggerGroup">
+            <value>triggerGroup</value>
+        </property>
+        <property name="scheduler">
+            <ref bean="schedulerFactory"/>
+        </property>
+        <property name="actionService">
+            <ref bean="ActionService"/>
+        </property>
+        <property name="templateActionModelFactory">
+            <ref bean="templateActionModelFactory"/>
+        </property>
+        <property name="templateActionDefinition">
+            <ref bean="runFolderShareExpireScript"/>
+        </property>
+        <property name="transactionService">
+            <ref bean="TransactionService"/>
+        </property>
+        <property name="runAsUser">
+            <value>System</value>
+        </property>
+    </bean>
+    
+    <!--
+    Action for expiring-file-share-link script
+    -->
+    <bean id="runFileShareExpireScript" class="org.alfresco.repo.action.scheduled.SimpleTemplateActionDefinition">
+        <property name="actionName">
+            <value>script</value>
+        </property>
+        <property name="parameterTemplates">
+            <map>
+                <entry>
+                    <key>
+                        <value>script-ref</value>
+                    </key>
+                   		<value>\$\{selectSingleNode('workspace://SpacesStore', 'lucene', 'PATH:"/app:company_home/app:dictionary/app:scripts/cm:share-link-expiry.js"' )\}</value>
+                </entry>
+            </map>
+        </property>
+        <property name="templateActionModelFactory">
+            <ref bean="templateActionModelFactory"/>
+        </property>
+        <property name="dictionaryService">
+            <ref bean="DictionaryService"/>
+        </property>
+        <property name="actionService">
+            <ref bean="ActionService"/>
+        </property>
+        <property name="templateService">
+            <ref bean="TemplateService"/>
+        </property>
+    </bean>
+
+    <!--
+    Run the script every day at 6:00 p.m
+    -->
+    <bean id="runFileShareExpireScriptAction"
+          class="org.alfresco.repo.action.scheduled.CronScheduledQueryBasedTemplateActionDefinition">
+        <property name="transactionMode">
+            <value>UNTIL_FIRST_FAILURE</value>
+        </property>
+        <property name="compensatingActionMode">
+            <value>IGNORE</value>
+        </property>
+        <property name="searchService">
+            <ref bean="SearchService"/>
+        </property>
+        <property name="templateService">
+            <ref bean="TemplateService"/>
+        </property>
+        <property name="queryLanguage">
+            <value>lucene</value>
+        </property>
+        <property name="stores">
+            <list>
+                <value>workspace://SpacesStore</value>
+            </list>
+        </property>
+        <property name="queryTemplate">
+            <value>PATH:"/app:company_home"</value>
+        </property>
+        <property name="cronExpression">
+            <!-- <value>0 0/1 * * * ?</value> -->
+            <!-- <value>0 0 5 * * ?</value> -->
+           <value>${qshared.effectivity.cron}</value>
+        </property>
+        <property name="jobName">
+            <!-- <value>jobD</value> -->
+            <value>jobFileShareExpire</value>
+        </property>
+        <property name="jobGroup">
+             <value>jobGroup</value> 
+        </property>
+        <property name="triggerName">
+            <value>triggerJobFileShareExpire</value>
+        </property>
+        <property name="triggerGroup">
+            <value>triggerGroup</value>
+        </property>
+        <property name="scheduler">
+            <ref bean="schedulerFactory"/>
+        </property>
+        <property name="actionService">
+            <ref bean="ActionService"/>
+        </property>
+        <property name="templateActionModelFactory">
+            <ref bean="templateActionModelFactory"/>
+        </property>
+        <property name="templateActionDefinition">
+            <ref bean="runFileShareExpireScript"/>
+        </property>
+        <property name="transactionService">
+            <ref bean="TransactionService"/>
+        </property>
+        <property name="runAsUser">
+            <value>System</value>
+        </property>
+    </bean>
+</beans>

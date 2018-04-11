@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<alfresco-config>
+
+   <!-- Document Library Custom Code config section -->
+   <config evaluator="string-compare" condition="DocLibCustom">
+      <!--
+         Custom Code dependencies.
+
+         Note: files specified in the "src" attribute resolve relative to the /share/res/ servlet context.
+         -->
+         <dependencies>
+            <js src="components/make-public/make-public-action.js" />
+         </dependencies>
+      
+      <dependencies />
+   </config>
+   
+   <config evaluator="string-compare" condition="DocumentLibrary">
+       
+        <!--
+         Status Indicators
+      -->
+      <indicators>
+         <indicator id="public-file-indicator" index="120" >
+             <evaluator>evaluator.doclib.action.hasEffectivityAspect</evaluator>
+             <evaluator>evaluator.doclib.action.isFolder</evaluator>
+         </indicator>
+      </indicators>
+      
+      <!--
+         Custom Metadata Templates for the Document Library Browse View
+
+         Use view="simple" or view="detailed" to limit the display to one particular view.
+      -->
+      <metadata-templates>
+         
+         <!-- Public access file or folder -->
+         <template id="isPublic">
+             <evaluator>evaluator.doclib.action.hasEffectivityAspect</evaluator>
+             <evaluator>evaluator.doclib.action.isFolder</evaluator>
+             <banner index="10" id="lockBanner" evaluator="evaluator.doclib.metadata.hasLockBanner">{lockBanner}</banner>
+             <banner index="20" id="syncTransientError" evaluator="evaluator.doclib.metadata.hasSyncTransientErrorBanner">{syncTransientError}</banner>
+             <banner index="30" id="syncFailed" evaluator="evaluator.doclib.metadata.hasSyncFailedBanner">{syncFailed}</banner>
+             <line index="10" id="date">{date}{size}</line>
+             <line index="20" id="description" view="detailed">{description}</line>
+             <line index="30" id="public-url" view="detailed">{public-url xfel.public.url.label}</line>
+             <line index="40" id="tags" view="detailed">{tags}</line>
+             <line index="50" id="categories" view="detailed" evaluator="evaluator.doclib.metadata.hasCategories">{categories}</line>
+             <line index="60" id="social" view="detailed">{social}</line>
+         </template>
+      </metadata-templates>
+    </config>
+        
+     <!-- Document Library Actions config section -->
+   <config evaluator="string-compare" condition="DocLibActions">
+
+      <!--
+         Action definitions
+      -->
+       <actions>
+         
+         
+         <action id="make-public-action" icon="make-public-action" type="javascript" label="actions.folder.make.public">
+             <permissions>
+                 <permission allow="true">Write</permission>
+             </permissions>
+             <evaluator negate="true">evaluator.doclib.action.hasEffectivityAspect</evaluator>
+             <evaluator>evaluator.doclib.action.isFolder</evaluator>
+             <evaluator>evaluator.doclib.action.siteBased</evaluator>
+             <param name="function">makePublicAction</param>
+         </action>
+         <action id="remove-public-action" icon="remove-public-action" type="javascript" label="actions.folder.remove.public">
+             <permissions>
+                 <permission allow="true">Write</permission>
+             </permissions>
+             <evaluator>evaluator.doclib.action.hasEffectivityAspect</evaluator>
+             <evaluator>evaluator.doclib.action.isFolder</evaluator>
+             <evaluator>evaluator.doclib.action.siteBased</evaluator>
+             <param name="function">removePublicAction</param>
+         </action>
+
+      </actions>
+      <!--
+         Action Group definitions
+      -->
+      <actionGroups>
+         <actionGroup id="empty"/>
+
+         <actionGroup id="document-browse">
+            <action index="600" id="make-public-action" />
+            <action index="610" id="remove-public-action" />
+         </actionGroup>
+    
+         <actionGroup id="document-details">
+            <action index="600" id="make-public-action" />
+            <action index="610" id="remove-public-action" />
+        </actionGroup>
+        
+        <actionGroup id="folder-browse">
+            <action index="600" id="make-public-action" />
+            <action index="610" id="remove-public-action" />
+         </actionGroup>
+
+         <actionGroup id="folder-details">
+            <action index="600" id="make-public-action" />
+            <action index="610" id="remove-public-action" />
+         </actionGroup>
+        
+      </actionGroups>
+   </config>
+       
+</alfresco-config>
