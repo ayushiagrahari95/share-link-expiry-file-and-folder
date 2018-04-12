@@ -1,17 +1,17 @@
 <#if space??>
 	<#if (space.name != "")>
-		<h1>
+		<h1></br>
 			<b>Folder Name:</b>${space.name}
 		</h1>
 	</#if>
 	<#if (space.properties["cm:title"]!="")>
-		<h2>
+		<h2></br>
 			<b>Title:</b>${space.properties["cm:title"]}
 		</h2>
 	</#if>
 	<#if (space.properties["cm:description"]!="")>
-		<h3>
-			<b>Description:</b>${space.properties["cm:description"]}
+		<h3></br>
+			<b>Description:</b> ${space.properties["cm:description"]}</br>
 		</h3>
 	</#if>
 <#-- Table of the documents in requested Space -->
@@ -22,11 +22,14 @@
     <#list space.children as child>
     <table>
     <tr>
-    <td><a href="${url.context}${child.url}" target="new"><img
-    src="${url.context}${child.icon16}" border=0></a></td>
     <#if child.isDocument>
-    <td><a href="${url.context}${child.url}" target="new">${child.properties.name}</a></td>
+    	<td>
+    		<a href="${url.context}${child.url}" target="new">
+    		<img src="${url.context}${child.icon16}" border=0></a>
+    	</td>
+    	<td><a href="${url.context}${child.url}" target="new">${child.properties.name}</a></td>
     <#else>
+    	<td><img src="${url.context}${child.icon16}" border=0></a></td>
     	<td>${child.properties.name}</td>
     </#if>
     </tr>

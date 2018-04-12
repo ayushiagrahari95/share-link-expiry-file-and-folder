@@ -20,9 +20,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <!-- A simple class that is initialized by Spring -->
-    <bean id="eisenvault.ev_share_make_public_repo.Demo" class="eisenvault.ev_share_make_public_repo.platformsample.Demo" init-method="init" />
-    
     <bean id="OnAddAspectPolicyOnQshared" class="org.alfresco.repo.policy.registration.ClassPolicyRegistration" parent="policyRegistration">
 
         <property name="policyName">

@@ -24,7 +24,7 @@
       <indicators>
          <indicator id="public-file-indicator" index="120" >
              <evaluator>evaluator.doclib.action.hasEffectivityAspect</evaluator>
-             <evaluator>evaluator.doclib.action.isFolder</evaluator>
+             <evaluator>evaluator.doclib.action.share.isFolder</evaluator>
          </indicator>
       </indicators>
       
@@ -38,7 +38,7 @@
          <!-- Public access file or folder -->
          <template id="isPublic">
              <evaluator>evaluator.doclib.action.hasEffectivityAspect</evaluator>
-             <evaluator>evaluator.doclib.action.isFolder</evaluator>
+             <evaluator>evaluator.doclib.action.share.isFolder</evaluator>
              <banner index="10" id="lockBanner" evaluator="evaluator.doclib.metadata.hasLockBanner">{lockBanner}</banner>
              <banner index="20" id="syncTransientError" evaluator="evaluator.doclib.metadata.hasSyncTransientErrorBanner">{syncTransientError}</banner>
              <banner index="30" id="syncFailed" evaluator="evaluator.doclib.metadata.hasSyncFailedBanner">{syncFailed}</banner>
@@ -66,7 +66,7 @@
                  <permission allow="true">Write</permission>
              </permissions>
              <evaluator negate="true">evaluator.doclib.action.hasEffectivityAspect</evaluator>
-             <evaluator>evaluator.doclib.action.isFolder</evaluator>
+             <evaluator>evaluator.doclib.action.share.isFolder</evaluator>
              <evaluator>evaluator.doclib.action.siteBased</evaluator>
              <param name="function">makePublicAction</param>
          </action>
@@ -75,7 +75,7 @@
                  <permission allow="true">Write</permission>
              </permissions>
              <evaluator>evaluator.doclib.action.hasEffectivityAspect</evaluator>
-             <evaluator>evaluator.doclib.action.isFolder</evaluator>
+             <evaluator>evaluator.doclib.action.share.isFolder</evaluator>
              <evaluator>evaluator.doclib.action.siteBased</evaluator>
              <param name="function">removePublicAction</param>
          </action>
