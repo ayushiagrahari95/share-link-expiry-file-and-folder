@@ -13,6 +13,6 @@
       <h1 class="theme-color-3"><span>${siteTitle}</span></h1>
    </div>
    <div class="make-public-logo">
-        <img class="public-logo" src="${url.context}/res/themes/baseTheme/images/company_logo.png" width="180" />
+        <img class="public-logo" src="${url.context}/res/themes/baseTheme/images/company_logo.png" width="180" style="background-color:white"/>
    </div>
 </div>
