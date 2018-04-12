@@ -1,18 +1,32 @@
-<#include "../../../org/alfresco/components/component.head.inc">
-<@markup id="css" >
+<@standalone>
+   <@markup id="css" >
       <#-- CSS Dependencies -->
       <@link rel="stylesheet" type="text/css" href="${url.context}/res/components/quickshare/header.css" />
-      <@link rel="stylesheet" type="text/css" href="${page.url.context}/res/components/make-public/header.css" />
-</@>
-   
+   </@>
 
-<#assign activePage = page.url.templateArgs.pageid!"">
-<#assign siteTitle>${(page.url.args["title"]!"")?js_string}</#assign>
-<div class="theme-bg-color-1 theme-border-1">
-   <div class="title">
-      <h1 class="theme-color-3"><span>${siteTitle}</span></h1>
-   </div>
-   <div class="make-public-logo">
-        <img class="public-logo" src="${url.context}/res/themes/baseTheme/images/company_logo.png" width="180" style="background-color:white"/>
-   </div>
-</div>
+   <@markup id="js"/>
+
+   <@markup id="widgets"/>
+
+   <@markup id="html">
+      <@uniqueIdDiv>
+         <div class="quickshare-header">
+
+            <div class="quickshare-header-left">
+               <img width="180" src="${url.context}/res/themes/baseTheme/images/company_logo.png">
+            </div>
+
+            <#if page.url.args.error! == "true">
+               <script>
+                  Alfresco.util.PopupManager.displayMessage({
+                     text: "${authfailureMessage?js_string}"
+                  });
+               </script>
+            </#if>
+
+            <div class="clear"></div>
+
+         </div>
+      </@>
+   </@>
+</@>
