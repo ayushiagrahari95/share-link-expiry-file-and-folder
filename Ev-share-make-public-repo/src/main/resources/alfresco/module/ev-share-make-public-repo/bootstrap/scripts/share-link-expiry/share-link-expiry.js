@@ -8,19 +8,19 @@ var def = {
 var nodes = search.query(def);
 //var nodes = search.luceneSearch('ASPECT:"qshare:shared" AND @cm\\:to:[MIN TO NOW]');
 var count = 0;
-logger.warn("[zk] Starting effectivity qshared:");
+logger.log("[zk] Starting effectivity qshared:");
 for each(var node in nodes) {
-	logger.warn("expiring the file share");
+	logger.log("expiring the file share");
 	if(node.isDocument){ 
-  logger.warn("running file share expiration scripts");
+  logger.log("running file share expiration scripts");
   count = count + 1;
-  logger.warn(count + ": "+node.displayPath+"/"+node.name);
-  logger.warn("[zk] The public url is expired from file --> "+node.properties["cm:to"]);
-  logger.warn("[zk] Cleaning qshared aspect from file..");
+  logger.log(count + ": "+node.displayPath+"/"+node.name);
+  logger.log("[zk] The public url is expired from file --> "+node.properties["cm:to"]);
+  logger.log("[zk] Cleaning qshared aspect from file..");
   node.removeAspect("qshare:shared");
-  logger.warn("[zk] Cleaning effectivity aspect from file");
+  logger.log("[zk] Cleaning effectivity aspect from file");
   node.removeAspect("cm:effectivity");
   node.save();
 	}
 	}
-logger.warn("[zk] Done.");
+logger.log("[zk] Done.");

@@ -25,6 +25,6 @@ if (behaviour.args == null) {
 } else {
 var node = behaviour.args[0];
 node.removeAspect("cm:effectivity");
-logger.warn("effectivity aspect removed after unsharing the file from"+node.name);
+logger.log("effectivity aspect removed after unsharing the file from"+node.name);
 node.save
 }

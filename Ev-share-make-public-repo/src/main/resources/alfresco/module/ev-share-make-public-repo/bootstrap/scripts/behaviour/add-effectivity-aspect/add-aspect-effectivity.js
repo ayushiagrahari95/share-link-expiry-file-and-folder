@@ -43,7 +43,7 @@ if (behaviour.args == null) {
     node.properties["cm:from"] = getFormattedDate(date1);
     node.properties["cm:to"]   = getFormattedDate(date2);
     
-    logger.warn("[zk] Expiration period (days): " + properties["qshared.effectivity.expiration.days"]);
-    logger.warn("[zk] Setting effectivity sharing to: " + getFormattedDate(date2) );
+    logger.log("[zk] Expiration period (days): " + properties["qshared.effectivity.expiration.days"]);
+    logger.log("[zk] Setting effectivity sharing to: " + getFormattedDate(date2) );
     node.save();
 }

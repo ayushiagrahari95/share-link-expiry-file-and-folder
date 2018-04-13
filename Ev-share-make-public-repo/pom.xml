@@ -202,13 +202,13 @@
                 <artifactId>jrebel-maven-plugin</artifactId>
                 <version>${jrebel.version}</version>
                 <executions>
-                    <execution>
+                    <!-- <execution>
                         <id>generate-rebel-xml</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
-                    </execution>
+                    </execution> -->
                 </executions>
                 <configuration>
                     <!-- For more information about how to configure JRebel plugin see:

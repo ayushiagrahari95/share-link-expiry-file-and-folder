@@ -56,8 +56,10 @@
         
          /* construct the request url*/
     	 /*For installation*/
-    	 var requestUrl =  window.location.protocol + "//" + window.location.host + "/alfresco/service/" + 
-          "eu/xfel/make-public/doclist?nodeRef=" + this.options.nodeRef + "&guest=true";
+    	 /*var requestUrl =  window.location.protocol + "//" + window.location.host + "/alfresco/service/" + 
+          "eu/xfel/make-public/doclist?nodeRef=" + this.options.nodeRef + "&guest=true";*/
+    	  var requestUrl =  Alfresco.constants.URL_CONTEXT + "proxy/alfresco-noauth/eu/xfel/make-public/doclist?nodeRef=" + this.options.nodeRef + "&guest=true";
+    	  
     	  /*for standalone*/ 
     	  /*var requestUrl =  Alfresco.constants.PROXY_URI + "eu/xfel/make-public/doclist?nodeRef=" + this.options.nodeRef + "&guest=true";*/
          // execute ajax request
