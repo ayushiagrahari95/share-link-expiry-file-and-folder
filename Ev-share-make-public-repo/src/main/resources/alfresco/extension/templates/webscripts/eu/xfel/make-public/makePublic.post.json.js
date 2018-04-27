@@ -19,7 +19,9 @@ function runAction(p_params) {
     var results = [];
     var nodeString = p_params.files[0];
     var nodeRef = utils.getNodeFromString(nodeString);
-
+    var duration = p_params.files[1];
+    logger.log("duration is"+duration);
+    
     var result = {
         action: "makePublicAction",
         success: true,
@@ -28,7 +30,7 @@ function runAction(p_params) {
 
     logger.log("name " + nodeRef.name);
 
-    if (grantGuestAccess(nodeRef))
+    if (grantGuestAccess(nodeRef,duration))
         result.added = true;
 
     results.push(result);
@@ -36,13 +38,13 @@ function runAction(p_params) {
     return results;
 }
 
-function grantGuestAccess(nodeRef) {
+function grantGuestAccess(nodeRef,duration) {
     var added = false;
     try {
     	logger.log("guest access is granted to "+nodeRef.name);
         nodeRef.setPermission("Consumer", "guest");
-        var ctxt = Packages.org.springframework.web.context.ContextLoader.getCurrentWebApplicationContext();
-        var properties =  ctxt.getBean('global-properties', java.util.Properties);
+        /*var ctxt = Packages.org.springframework.web.context.ContextLoader.getCurrentWebApplicationContext();
+        var properties =  ctxt.getBean('global-properties', java.util.Properties);*/
 
         function getFormattedDate(mydate) {
             var str = mydate.getFullYear() + "-" + (mydate.getMonth() + 1) + "-" + mydate.getDate() 
@@ -51,8 +53,11 @@ function grantGuestAccess(nodeRef) {
 
         var date1      = new Date();
         var date2      = new Date();
-        var expiration = new Number(properties["qshared.effectivity.expiration.days"]);
+       /* var expiration = new Number(properties["qshared.effectivity.expiration.days"]);*/
+        var expiration = new Number(duration);
+        logger.log("\n\nexpiration days are"+expiration);
         date2.setDate(date2.getDate()+expiration);
+        logger.log("date2 is set to"+date2);
 
         nodeRef.addAspect("cm:effectivity");
         nodeRef.properties["cm:from"] = getFormattedDate(date1);

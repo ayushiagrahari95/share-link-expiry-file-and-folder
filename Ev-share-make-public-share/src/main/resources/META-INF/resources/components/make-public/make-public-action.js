@@ -48,12 +48,11 @@
             {
                 actionName: "makePublicAction",
                 fn: function makePublic(file) {
-                    var msg = this.msg("message.make-public.confirm", file.displayName)
-                    if (file.jsNode.isContainer) {
-                        msg = this.msg("message.make-public.folder.confirm", file.displayName)
-                    }
-                    var rv = confirm(msg);
-                    if (rv === false) {
+                    
+                	var msg = this.msg("message.make-public.folder.confirm", file.displayName)
+                    var duration = prompt(msg);
+                	
+                    if (duration === false) {
                         return false;
                     }
                     this.modules.actions.genericAction({
@@ -88,7 +87,7 @@
                         config: {
                             requestContentType: Alfresco.util.Ajax.JSON,
                             dataObj: {
-                                nodeRefs: [file.nodeRef]
+                                nodeRefs: [file.nodeRef,duration]
                             }
                         }
                     });
