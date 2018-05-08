@@ -3,6 +3,6 @@
   <description>Publicly available document list</description>
   <url>/eu/xfel/make-public/doclist</url>
   <format default="html">argument</format>
-  <authentication>guest</authentication>
+ <authentication runas="guest">none</authentication>
   <transaction allow="readonly">required</transaction>
 </webscript>

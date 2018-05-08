@@ -60,7 +60,8 @@
     	  //var requestUrl =  Alfresco.constants.URL_CONTEXT + "proxy/alfresco-noauth/eu/xfel/make-public/doclist?nodeRef=" + this.options.nodeRef + "&guest=true";
     	  
     	  /*for standalone*/ 
-    	  /*var requestUrl =  Alfresco.constants.PROXY_URI + "eu/xfel/make-public/doclist?nodeRef=" + this.options.nodeRef + "&guest=true";*/
+    	 /* var requestUrl =  Alfresco.constants.PROXY_URI + "eu/xfel/make-public/doclist?nodeRef=" + this.options.nodeRef + "&guest=true";*/
+    	  /*var requestUrl =  window.location.protocol + "/share/proxy/alfresco/eu/xfel/make-public/doclist?nodeRef=" + this.options.nodeRef;*/
          // execute ajax request
              Alfresco.util.Ajax.request(
             {
