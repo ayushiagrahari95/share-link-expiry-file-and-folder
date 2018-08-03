@@ -55,15 +55,15 @@ h3{
     <table id="share_page">
     <#list space.children as child>
     <tr>
-    <#if child.isDocument>
-    	<td class="image">
-    		<a href="${url.context}${child.url}" target="new">
-    		<img src="${url.context}${child.icon16}" border=0></a>
-    	</td>
-    	<td class="document">
-    		<b><a href="${url.context}${child.url}" target="new">${child.properties.name}</a></b>
-    	</td>
-    <#else>
+    <#if child.isDocument && (child.hasAspect("cm:workingcopy")?c=="false")>
+	    	<td class="image">
+	    		<a href="${url.context}${child.url}" target="new">
+	    		<img src="${url.context}${child.icon16}" border=0></a>
+	    	</td>
+	    	<td class="document">
+	    		<b><a href="${url.context}${child.url}" target="new">${child.properties.name}</a></b>
+	    	</td>
+    <#elseif child.typeShort=="cm:folder">
     	<td class="image"><img src="${url.context}${child.icon16}" border=0></a></td>
     	<td class="document">
     		<b>${child.properties.name}</b>
